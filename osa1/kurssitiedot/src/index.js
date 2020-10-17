@@ -1,68 +1,76 @@
+/*
+Tekijä; Eetu Karttunen
+Full Stack Open 2020
+Tehtävät 1.1-1.5
+*/
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const Header = ({course}) => {
-  return <h1>{course}</h1>;
-};
+const Header = (props) => {
+  console.log(props)
+  return <h1>{props.course}</h1>
+}
 
-const Content = ({osiot}) => {
+const Content = (props) => {
   return (
   <div>
-    <Osio osio={osiot[0]} />
-    <Osio osio={osiot[1]} />
-    <Osio osio={osiot[2]} />
+    
+    <Part name={props.parts[0].name} exercises={props.parts[0].exercises} />
+
+    <Part name={props.parts[1].name} exercises={props.parts[1].exercises} />
+
+    <Part name={props.parts[2].name} exercises={props.parts[2].exercises} />
   </div>
-    )
+    );
 };
 
 
-const Total = ({osiot}) => {
+const Total = (props) => {
   return (
       <p>Number of exercises 
-        {osiot[0].harjoitukset 
-        + osiot[1].harjoitukset 
-        + osiot[2].harjoitukset}</p>
+        {props.parts[0].exercises 
+            + props.parts[1].exercises 
+                   + props.parts[2].exercises}</p>
   );
 };
 
-const Osio = ({osio}) => {
+const Part = (props) => {
   return (
       <p>
-          {osio.nimi} {osio.harjoitukset}
+          {props.name} {props.exercises}
       </p>
   );
 };
 
-
 const App = () => {
-  /*Täytyy luoda jonkilainen yhdistelmä, jotta helpompi käsitellä*/
-  const course = 'Half Stack application development'
-  const kokoelmakaikkia = {
-    /* Jaetaan partsit osioihin */
+const course = {
+  name: 'Half Stack application development',
+  parts: [
+    {
+      name: 'Fundamentals of React',
+      exercises: 10
+    },
+    {
+      name: 'Using props to pass data',
+      exercises: 7
+    },
+    {
+      name: 'State of a component',
+      exercises: 14
+    }
+  ]
   
-    osiot: [
-      {
-        nimi : 'Fundamentals of React', harjoitukset : 10
-      },
+};
 
-      {
-        nimi : 'Using props to pass data', harjoitukset : 7
-      },
-
-      {
-        nimi : 'State of a component', harjoitukset : 14
-      }
-    ] };
-
-
-
-  return (
+  
+return (
     <div>
-      <Header course={course} />
-      <Content osiot={kokoelmakaikkia.osiot} />
-      <Total osiot={kokoelmakaikkia.osiot}/>
+      <Header course={course.name} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts}/>
     </div>
-  )
-}
-
-ReactDOM.render(<App />, document.getElementById('root'))
+  );
+};
+/* Render */
+ReactDOM.render(<App />, document.getElementById('root'));
