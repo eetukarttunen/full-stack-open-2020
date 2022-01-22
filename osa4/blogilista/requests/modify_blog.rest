@@ -1,0 +1,11 @@
+PUT http://localhost:3003/api/blogs/yourId
+Content-Type: application/json
+Authorization: bearer //putYourToken HERE
+
+{
+    "title": "Your title",
+    "author": "Yoru author", 
+    "url": "https://yourUrl",
+    "likes": 1,
+    "userId": "your User ID"
+}

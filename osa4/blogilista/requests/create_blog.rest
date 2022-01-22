@@ -1,0 +1,11 @@
+POST http://localhost:3003/api/blogs/ 
+Content-Type: application/json
+Authorization: barer //putYourToken HERE
+
+{
+    "title": "Aakkoset ABCDEFGG",
+    "author": "Eetu Karttunen", 
+    "url": "iltalehti.fi",
+    "likes": 13578,
+    "userId": "61eac66bb4249702583e2598"
+}
